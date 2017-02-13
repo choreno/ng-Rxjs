@@ -10,24 +10,80 @@ export class AppComponent {
   title = 'app works!';
 }
 
-//RXJS Tutorials
+// RXJS Tutorials
 
 
-//1 . Works!
+// 1. Works!
 //  import {Observable} from 'rxjs/Observable';
 //  import 'rxjs/add/operator/map';
 
 //   var t = console.log('x');
 
-//------------------
+// ------------------
 
 
 
-//2. Import All Rxjs
+// 2. Import All Rxjs
 import * as Rx from 'rxjs/Rx';
-var t = Rx.Observable.of(1,2,3).map(x=>x+'!!!!');
 
-var obs = Rx.Observable.interval(1000).take(5); 
-console.log(obs); 
+// 1. Map & Share
+
+const obs = Rx.Observable
+  .interval(500)
+  .take(5)
+  .do(x => console.log(x))
+  .share();
+
+
+
+obs.subscribe(x => console.log('obs1-' + x));
+obs.subscribe(x => console.log('obs2-' + x));
+
+
+// const obs = Rx.Observable.interval(100)
+//   .take(5)
+//   .map(x => {
+//     x = x * 2;
+//     console.log(x);
+//   }
+//   ).subscribe();
+
+
+// 2. Reduce
+
+// const obs2 = Rx.Observable.interval(500).take(5).do(i => console.log(i)) ;
+// const reduced = obs2.reduce( (state, value) => state + value, 0) ;
+// reduced.subscribe(x => console.log('total: ' + x));
+
+
+// 3. Scan
+
+// const obs3 =  Rx.Observable.interval(10).take(5);
+// const scanObs = obs3.scan((state, value) => state + value, 0);
+// scanObs.subscribe(total => console.log(total));
+// scanObs.count().subscribe(total => console.log(`count: ${total}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
