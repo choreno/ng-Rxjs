@@ -10,6 +10,9 @@ export class AppComponent {
   title = 'app works!';
 }
 
+
+
+
 // RXJS Tutorials
 
 
@@ -23,21 +26,21 @@ export class AppComponent {
 
 
 
-// 2. Import All Rxjs
-import * as Rx from 'rxjs/Rx';
+// // 2. Import All Rxjs
+// import * as Rx from 'rxjs/Rx';
 
-// 1. Map & Share
+// // 1. Map & Share
 
-const obs = Rx.Observable
-  .interval(500)
-  .take(5)
-  .do(x => console.log(x))
-  .share();
+// const obs = Rx.Observable
+//   .interval(500)
+//   .take(5)
+//   .do(x => console.log(x))
+//   .share();
 
 
 
-obs.subscribe(x => console.log('obs1-' + x));
-obs.subscribe(x => console.log('obs2-' + x));
+// obs.subscribe(x => console.log('obs1-' + x));
+// obs.subscribe(x => console.log('obs2-' + x));
 
 
 // const obs = Rx.Observable.interval(100)
@@ -62,15 +65,6 @@ obs.subscribe(x => console.log('obs2-' + x));
 // const scanObs = obs3.scan((state, value) => state + value, 0);
 // scanObs.subscribe(total => console.log(total));
 // scanObs.count().subscribe(total => console.log(`count: ${total}`));
-
-
-
-
-
-
-
-
-
 
 
 
