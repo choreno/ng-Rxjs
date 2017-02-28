@@ -10,12 +10,46 @@ import { Observable } from 'rxjs/Rx';
 export class AppComponent implements OnInit {
   title = 'app works!';
 
-  ngOnInit() {
+  everyResult=''; 
+  exhaustResult=''; 
+  expandResult =''; 
+  
+  isFind = false; 
+  findResult:string ; 
 
-    const src = Observable.of(1, 2, 3, 4, 7, 6, 10, 5);
-    src.subscribe(x => console.log(x));
+  ngOnInit() {
+    //Every    
+    Observable.of(1,2,3,4,5,6)
+    .every(x => x < 7)
+    .subscribe(x => this.everyResult = x.toString());
+
+    //Exhaust
+    const click = Observable.fromEvent(document, 'click');
+    const highOrder = click.map(x => Observable.interval(1000).take(4));
+    const result = highOrder.exhaust();
+    result.subscribe(x => this.exhaustResult += x.toString());
+
+    //Expand
+    const click2 = Observable.fromEvent(document,'click');
+    const powofTwo = click2
+    .mapTo(1)
+    .expand(x => Observable.of(2*x).delay(500))
+    .take(10);
+
+    powofTwo.subscribe(x => this.expandResult  += `${x}-`);
+
+
+    //Find -- find a first value to meet condition.
+    
+    Observable.of(1,2,3,4,5,6,7)
+    .find(x => x%7 == 0)
+    .subscribe(x => this.findResult += `${x} `);
+    this.isFind = true; 
+
 
   }
+
+
 
 }
 
