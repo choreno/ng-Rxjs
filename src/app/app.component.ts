@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-root',
@@ -6,8 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
+
+  ngOnInit() {
+
+    const src = Observable.of(1, 2, 3, 4, 7, 6, 10, 5);
+    src.subscribe(x => console.log(x));
+
+  }
+
 }
 
 
